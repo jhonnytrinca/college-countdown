@@ -6,7 +6,6 @@ export const Container = styled.div`
   gap: 20px;
   width: 100%;
   justify-content: center;
-  border: 1px solid black;
 `
 
 export const Box = styled.div`
