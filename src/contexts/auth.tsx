@@ -9,7 +9,7 @@ import { firebaseConfig } from '../services/firebase';
 import { initializeApp } from 'firebase/app';
 
 type AuthProps = {
-  userInfo: { isUserLoggedIn: boolean; user: {} };
+  userInfo: { isUserLoggedIn: boolean; user: any | null };
   setUserInfo: any;
   login: any;
   logout: any;
@@ -22,7 +22,7 @@ export const AuthContext = createContext<AuthProps>({} as AuthProps);
 function Auth({ children }: any) {
   const [userInfo, setUserInfo] = useState({
     isUserLoggedIn: false,
-    user: {}
+    user: null
   });
 
   const login = useCallback(() => {
@@ -34,7 +34,7 @@ function Auth({ children }: any) {
     signOut(auth).then(() => {
       setUserInfo({
         isUserLoggedIn: false,
-        user: {}
+        user: null
       });
     });
   }, []);
