@@ -11,10 +11,17 @@ import { useEffect, useState } from 'react';
 import { db } from '../services/firebase';
 import useAuth from './useAuth';
 
+const initialValues = {
+  name: '',
+  semester: null,
+  activities: [{ complete: false, grade: null }]
+};
+
 const useRegister = () => {
   const { userInfo } = useAuth();
-  const [data, setData] = useState();
-  const [item, setItem] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [item, setItem] = useState(initialValues);
+  const [data, setData] = useState([]);
 
   const getAll = async () => {
     try {
@@ -24,6 +31,7 @@ const useRegister = () => {
         docs.push({ id: doc.id, ...doc.data() });
       });
       setData(docs);
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
     }
@@ -31,9 +39,11 @@ const useRegister = () => {
 
   const get = async (id: string) => {
     try {
+      setIsLoading(true);
       const ref = await getDoc(doc(db, 'subjects', id));
       const data: any = ref.data();
       setItem(data);
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
     }
@@ -64,7 +74,7 @@ const useRegister = () => {
     }
   };
 
-  return { getAll, get, add, update, data, item };
+  return { getAll, get, add, update, data, item, isLoading };
 };
 
 export default useRegister;
