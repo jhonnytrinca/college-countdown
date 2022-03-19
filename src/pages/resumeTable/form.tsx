@@ -20,54 +20,64 @@ const Form = ({ _handleSubmit, handleUpdate, itemToEdit, data }: any) => {
   });
 
   return (
-    <form
-      onSubmit={() => {
-        itemToEdit ? handleSubmit(handleUpdate) : handleSubmit(_handleSubmit);
-        reset();
-      }}
-    >
-      {console.log(data)}
-      <label>Semestre</label>
-      <input
-        type='number'
-        {...register('semester', {
-          required: true,
-          min: 0,
-          max: 10
-        })}
-        placeholder='Informe o semestre'
-        disabled={itemToEdit}
-      />
+    <S.FormContainer>
+      <S.SubmitButton type='submit'>+</S.SubmitButton>
+      <S.Form
+        onSubmit={() => {
+          itemToEdit ? handleSubmit(handleUpdate) : handleSubmit(_handleSubmit);
+          reset();
+        }}
+      >
+        <h1>Adicionar nova matéria</h1>
 
-      <label>Matéria</label>
-      <input
-        {...register('name', { required: true })}
-        placeholder='Informe a matéria'
-        disabled={itemToEdit}
-      />
-
-      <div>
-        Atividades{' '}
-        {fields.map((act, index) => (
-          <div key={index}>
-            <label>{act}</label>
-            <input
-              type='checkbox'
-              {...register(`activities.${index}.complete`)}
-            />
+        {console.log(data)}
+        <div className='firstRow'>
+          <div>
+            <label>Semestre</label>
             <input
               type='number'
-              placeholder='Nota'
-              {...register(`activities.${index}.grade`, {
+              {...register('semester', {
+                required: true,
                 min: 0,
                 max: 10
               })}
+              placeholder='Informe o semestre'
+              disabled={itemToEdit}
             />
           </div>
-        ))}
-      </div>
-      <button type='submit'>+</button>
-    </form>
+          <div>
+            <label>Matéria</label>
+            <input
+              {...register('name', { required: true })}
+              placeholder='Informe a matéria'
+              disabled={itemToEdit}
+            />
+          </div>
+        </div>
+        <div className='secondRow'>
+          <h3>Atividades</h3>
+          <S.Activities>
+            {fields.map((act, index) => (
+              <S.InputBox key={index}>
+                <label>{act}</label>
+                <S.Checkbox
+                  type='checkbox'
+                  {...register(`activities.${index}.complete`)}
+                />
+                <S.Grade
+                  type='number'
+                  placeholder='Nota'
+                  {...register(`activities.${index}.grade`, {
+                    min: 0,
+                    max: 10
+                  })}
+                />
+              </S.InputBox>
+            ))}
+          </S.Activities>
+        </div>
+      </S.Form>
+    </S.FormContainer>
   );
 };
 
