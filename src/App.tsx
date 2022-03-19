@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router-dom';
-import { HOME, REGISTER } from './routes';
+import { HOME, RESUME } from './routes';
 import Home from './pages/home/home';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './services/firebase';
-import RegisterForm from './pages/registerForm/registerForm';
+import ResumeTable from './pages/resumeTable/resumeTable';
 import NavBar from './components/NavBar/navBar';
 
 initializeApp(firebaseConfig);
@@ -14,7 +14,7 @@ function App() {
       <NavBar />
 
       <Switch>
-        <Route path={REGISTER} component={RegisterForm} />
+        <Route path={RESUME} component={ResumeTable} />
         <Route path={HOME} component={Home} />
       </Switch>
     </>

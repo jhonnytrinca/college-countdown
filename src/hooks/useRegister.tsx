@@ -45,7 +45,8 @@ const useRegister = () => {
         userId: userInfo.user!.uid,
         ...data,
         createdAt: serverTimestamp(),
-        activities: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
+        activities: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+        completed: false
       });
     } catch (e) {
       console.log(e);

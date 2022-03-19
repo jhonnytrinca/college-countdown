@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { NavLink } from 'react-router-dom';
-import { HOME, REGISTER } from '../../routes';
+import { HOME, RESUME } from '../../routes';
 import useAuth from '../../hooks/useAuth';
 
 const NavBar = () => {
@@ -47,8 +47,8 @@ const NavBar = () => {
             )}
           </li>
           <li>
-            <NavLink activeClassName='activePage' to={REGISTER}>
-              Registrar
+            <NavLink activeClassName='activePage' to={RESUME}>
+              Tabela
             </NavLink>
           </li>
           {userInfo.user === null ? (

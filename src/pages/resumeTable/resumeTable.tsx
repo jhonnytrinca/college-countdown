@@ -5,7 +5,7 @@ import * as S from './style';
 import Login from './login';
 import Form from './form';
 
-const RegisterForm = () => {
+const ResumeTable = () => {
   const { userInfo, setUserInfo } = useAuth();
 
   useEffect(() => {
@@ -19,7 +19,9 @@ const RegisterForm = () => {
     });
   }, [setUserInfo]);
 
-  return <>{userInfo.user ? <Form /> : <Login />}</>;
+  return (
+    <>{userInfo.user?.uid === process.env.REACT_APP_USER_ID && <Form />}</>
+  );
 };
 
-export default RegisterForm;
+export default ResumeTable;
