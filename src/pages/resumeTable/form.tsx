@@ -29,8 +29,6 @@ const Form = ({ _handleSubmit, handleUpdate, itemToEdit, data }: any) => {
         }}
       >
         <h1>Adicionar nova matéria</h1>
-
-        {console.log(data)}
         <div className='firstRow'>
           <div>
             <label>Semestre</label>

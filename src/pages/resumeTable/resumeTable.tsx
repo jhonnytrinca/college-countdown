@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import * as S from './style';
 import Form from './form';
 import useRegister from '../../hooks/useRegister';
-import Table from './table';
+import Table from '../../components/Table/table';
 import { useForm } from 'react-hook-form';
 
 const ResumeTable = () => {
@@ -35,25 +35,29 @@ const ResumeTable = () => {
       {isLoading ? (
         ''
       ) : (
-        <>
+        <S.Container>
           {/* {userInfo.user?.uid === process.env.REACT_APP_USER_ID && ( */}
           <>
             {openForm && (
-              <Form
-                _handleSubmit={_handleSubmit}
-                handleUpdate={handleUpdate}
-                itemToEdit={itemToEdit}
-                data={item}
-              />
+              <>
+                <Form
+                  _handleSubmit={_handleSubmit}
+                  handleUpdate={handleUpdate}
+                  itemToEdit={itemToEdit}
+                  data={item}
+                />
+                <S.Divider />
+              </>
             )}
-            <button
+            <S.AddButton
               onClick={() => {
                 setOpenForm(!openForm);
                 reset();
               }}
+              className={openForm ? 'cancel' : 'add'}
             >
               {openForm ? '-' : '+'}
-            </button>
+            </S.AddButton>
           </>
           {/* )} */}
           <Table
@@ -62,7 +66,7 @@ const ResumeTable = () => {
             openForm={openForm}
             setOpenForm={setOpenForm}
           />
-        </>
+        </S.Container>
       )}
     </>
   );

@@ -15,7 +15,7 @@ const tableHeaders = [
 ];
 
 const Table = ({ data, openForm, setOpenForm, setItemToEdit }: any) => (
-  <div>
+  <S.TableContainer>
     <S.TableHeader>
       {tableHeaders.map((item, index) => (
         <span key={index}>{item}</span>
@@ -28,8 +28,7 @@ const Table = ({ data, openForm, setOpenForm, setItemToEdit }: any) => (
           <span>{item.name}</span>
           {item.activities.map((activity: any) => (
             <div key={activity.id}>
-              <span>{activity.complete ? 'v' : 'x'}</span>
-              <span>{activity.grade}</span>
+              <span>{activity.complete ? activity.grade : '-'}</span>
             </div>
           ))}
           <span>{item.grade?.value || 'Pendente'}</span>
@@ -41,20 +40,22 @@ const Table = ({ data, openForm, setOpenForm, setItemToEdit }: any) => (
               : 'Pendente'}
           </span>
           {/* {userInfo.user?.uid === process.env.REACT_APP_USER_ID && ( */}
-          <button
-            onClick={() => {
-              setOpenForm(!openForm);
-              setItemToEdit(item.id);
-            }}
-            disabled={openForm}
-          >
-            Edit
-          </button>
+          <div>
+            <S.EditButton
+              onClick={() => {
+                setOpenForm(!openForm);
+                setItemToEdit(item.id);
+              }}
+              disabled={openForm}
+            >
+              Edit
+            </S.EditButton>
+          </div>
           {/* )} */}
         </S.TableRow>
       ))}
     </S.TableBody>
-  </div>
+  </S.TableContainer>
 );
 
 export default Table;

@@ -1,38 +1,19 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.div`
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid black;
+export const Container = styled.div`
+position: relative;
 
-  h2 {
-    font-size: 1.4rem;
-  }
-  
-  button {
-    font-size: 1.1rem;
-    cursor: pointer;
-    text-decoration: underline;
-    background: none;
-    border: none;
-  }
-`
+.add{
+  background-color: blue;  
+  font-size: 30px;
+}
 
-export const TableHeader = styled.div`
-  display: grid;
-  grid-template-columns: 0.6fr 2fr repeat(7, 1fr) 0.6fr;
-`
+.cancel {
+  background-color: red;
+  font-size: 25px;
+  font-weight: 700;
+}
 
-export const TableBody = styled.div`  
-`
-
-export const TableRow = styled.div`  
-  display: grid;
-  grid-template-columns: 0.6fr 2fr repeat(7, 1fr) 0.6fr;
 `
 
 export const Input = styled.input`
@@ -116,3 +97,21 @@ export const SubmitButton = styled.button`
 export const FormContainer = styled.div`
 display: flex;
 justify-content: center;`
+
+
+export const AddButton = styled.button`
+  position: absolute;  
+  right: 20px;
+  top: -18px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin: 0 20px 20px;
+  color: white;
+`
+export const Divider = styled.div`
+  margin: 0 80px;
+  border-bottom: 1px solid silver;
+`
