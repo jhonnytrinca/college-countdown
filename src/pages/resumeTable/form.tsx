@@ -1,8 +1,4 @@
-import { watch } from 'fs';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
-import useRegister from '../../hooks/useRegister';
+import { useForm } from 'react-hook-form';
 import * as S from './style';
 
 const fields = [
@@ -14,19 +10,16 @@ const fields = [
 ];
 
 const Form = ({ _handleSubmit, handleUpdate, itemToEdit, data }: any) => {
-  const { get, isLoading } = useRegister();
-  const { register, handleSubmit, reset, watch } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: data
   });
 
   return (
     <S.FormContainer>
-      <S.SubmitButton type='submit'>+</S.SubmitButton>
       <S.Form
-        onSubmit={() => {
-          itemToEdit ? handleSubmit(handleUpdate) : handleSubmit(_handleSubmit);
-          reset();
-        }}
+        onSubmit={
+          itemToEdit ? handleSubmit(handleUpdate) : handleSubmit(_handleSubmit)
+        }
       >
         <h1>Adicionar nova matéria</h1>
         <div className='firstRow'>
@@ -52,28 +45,32 @@ const Form = ({ _handleSubmit, handleUpdate, itemToEdit, data }: any) => {
             />
           </div>
         </div>
-        <div className='secondRow'>
-          <h3>Atividades</h3>
-          <S.Activities>
-            {fields.map((act, index) => (
-              <S.InputBox key={index}>
-                <label>{act}</label>
-                <S.Checkbox
-                  type='checkbox'
-                  {...register(`activities.${index}.complete`)}
-                />
-                <S.Grade
-                  type='number'
-                  placeholder='Nota'
-                  {...register(`activities.${index}.grade`, {
-                    min: 0,
-                    max: 10
-                  })}
-                />
-              </S.InputBox>
-            ))}
-          </S.Activities>
-        </div>
+        {itemToEdit && (
+          <div className='secondRow'>
+            <h3>Atividades</h3>
+            <S.Activities>
+              {fields.map((act, index) => (
+                <S.InputBox key={index}>
+                  <label>{act}</label>
+                  <S.Checkbox
+                    type='checkbox'
+                    {...register(`activities.${index}.complete`)}
+                  />
+                  <S.Grade
+                    type='number'
+                    step='.1'
+                    placeholder='Nota'
+                    {...register(`activities.${index}.grade`, {
+                      min: 0,
+                      max: 10
+                    })}
+                  />
+                </S.InputBox>
+              ))}
+            </S.Activities>
+          </div>
+        )}
+        <S.SubmitButton type='submit'>+</S.SubmitButton>
       </S.Form>
     </S.FormContainer>
   );

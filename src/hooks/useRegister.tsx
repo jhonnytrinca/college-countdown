@@ -5,9 +5,11 @@ import {
   updateDoc,
   doc,
   getDoc,
-  getDocs
+  getDocs,
+  query,
+  orderBy
 } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { db } from '../services/firebase';
 import useAuth from './useAuth';
 
@@ -25,7 +27,9 @@ const useRegister = () => {
 
   const getAll = async () => {
     try {
-      const ref = await getDocs(collection(db, 'subjects'));
+      const ref = await getDocs(
+        query(collection(db, 'subjects'), orderBy('semester'))
+      );
       let docs: any = [];
       ref.forEach((doc) => {
         docs.push({ id: doc.id, ...doc.data() });
@@ -42,7 +46,7 @@ const useRegister = () => {
       setIsLoading(true);
       const ref = await getDoc(doc(db, 'subjects', id));
       const data: any = ref.data();
-      setItem(data);
+      setItem({ ...data, id });
       setIsLoading(false);
     } catch (e) {
       console.log(e);
@@ -66,8 +70,8 @@ const useRegister = () => {
   const update = async (data: any, id: string) => {
     try {
       await updateDoc(doc(db, 'subjects', id), {
-        updatedAt: serverTimestamp(),
-        ...data
+        ...data,
+        updatedAt: serverTimestamp()
       });
     } catch (e) {
       console.log(e);

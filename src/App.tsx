@@ -6,6 +6,9 @@ import { firebaseConfig } from './services/firebase';
 import ResumeTable from './pages/resumeTable/resumeTable';
 import NavBar from './components/NavBar/navBar';
 import { createGlobalStyle } from 'styled-components';
+import { useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import useAuth from './hooks/useAuth';
 
 initializeApp(firebaseConfig);
 
@@ -21,6 +24,19 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const { setUserInfo } = useAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), (user) => {
+      setUserInfo({
+        isUserLoggedIn: !!user,
+        user: user && {
+          ...user
+        }
+      });
+    });
+  }, [setUserInfo]);
+
   return (
     <>
       <GlobalStyle />

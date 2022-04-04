@@ -25,6 +25,25 @@ export const TableRow = styled.div`
   &:hover {
     background-color: #eee;
   }
+
+  .approved {
+    color: lime;
+    font-weight: 600;
+  }
+
+  .reproved {
+    color: red;
+    font-weight: 600;
+  }
+
+  .middle {
+    color: gold;
+    font-weight: 600;
+  }
+
+  .actGrades {
+    font-weight: 400;
+  }
 `
 export const EditButton = styled.button`
   border: none;

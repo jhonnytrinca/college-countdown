@@ -91,7 +91,7 @@ export const SubmitButton = styled.button`
   font-size: 30px;
   color: white;
   cursor: pointer;
-  margin: 0 20px 20px;
+  margin: 20px;
 `
 
 export const FormContainer = styled.div`
