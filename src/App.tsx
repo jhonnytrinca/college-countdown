@@ -1,14 +1,15 @@
 import { Route, Switch } from 'react-router-dom';
-import { HOME, RESUME } from './routes';
-import Home from './pages/home/home';
+import { HOME, RESUME, SEMESTER } from './routes';
+import Home from './pages/Home/home';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './services/firebase';
-import ResumeTable from './pages/resumeTable/resumeTable';
+import ResumeTable from './pages/ResumeTable/ResumeTable';
 import NavBar from './components/NavBar/navBar';
 import { createGlobalStyle } from 'styled-components';
 import { useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import useAuth from './hooks/useAuth';
+import Semester from './pages/Semester/Semester';
 
 initializeApp(firebaseConfig);
 
@@ -44,6 +45,7 @@ function App() {
 
       <Switch>
         <Route path={RESUME} component={ResumeTable} />
+        <Route path={SEMESTER} component={Semester} />
         <Route path={HOME} component={Home} />
       </Switch>
     </>

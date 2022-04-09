@@ -7,7 +7,8 @@ import {
   getDoc,
   getDocs,
   query,
-  orderBy
+  orderBy,
+  where
 } from 'firebase/firestore';
 import { useState } from 'react';
 import { db } from '../services/firebase';
@@ -23,12 +24,28 @@ const useRegister = () => {
   const { userInfo } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [item, setItem] = useState(initialValues);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
 
   const getAll = async () => {
     try {
       const ref = await getDocs(
         query(collection(db, 'subjects'), orderBy('semester'))
+      );
+      let docs: any = [];
+      ref.forEach((doc) => {
+        docs.push({ id: doc.id, ...doc.data() });
+      });
+      setData(docs);
+      setIsLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getBySemester = async (sem: string) => {
+    try {
+      const ref = await getDocs(
+        query(collection(db, 'subjects'), where('semester', '==', sem))
       );
       let docs: any = [];
       ref.forEach((doc) => {
@@ -78,7 +95,7 @@ const useRegister = () => {
     }
   };
 
-  return { getAll, get, add, update, data, item, isLoading };
+  return { getAll, getBySemester, get, add, update, data, item, isLoading };
 };
 
 export default useRegister;

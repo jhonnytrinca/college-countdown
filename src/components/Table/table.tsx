@@ -1,6 +1,14 @@
 import React from 'react';
 import * as S from './style';
 
+type TableProps = {
+  data: any;
+  openForm?: any;
+  setOpenForm?: any;
+  setItemToEdit?: any;
+  userInfo?: any;
+};
+
 const tableHeaders = [
   'Semestre',
   'Matéria',
@@ -20,7 +28,7 @@ const Table = ({
   setOpenForm,
   setItemToEdit,
   userInfo
-}: any) => (
+}: TableProps) => (
   <S.TableContainer>
     <S.TableHeader>
       {tableHeaders.map((item, index) => (
@@ -88,7 +96,7 @@ const Table = ({
                 : 'Reprovado'
               : 'Pendente'}
           </span>
-          {userInfo.user?.uid === process.env.REACT_APP_USER_ID && (
+          {userInfo?.user?.uid === process.env.REACT_APP_USER_ID && (
             <div>
               <S.EditButton
                 onClick={() => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import * as S from './style';
-import Form from './form';
+import Form from './Form';
 import useRegister from '../../hooks/useRegister';
 import Table from '../../components/Table/table';
 import { useForm } from 'react-hook-form';
@@ -11,7 +11,6 @@ const ResumeTable = () => {
   const { getAll, add, update, data, get, isLoading, item } = useRegister();
   const [itemToEdit, setItemToEdit] = useState('');
   const [openForm, setOpenForm] = useState(false);
-  const [gradeOptions, setGradeOptions] = useState({});
   const { reset } = useForm({
     defaultValues: data
   });

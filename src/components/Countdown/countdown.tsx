@@ -2,35 +2,29 @@ import React from 'react';
 import useCountdown from '../../hooks/useCountdown';
 import * as S from './style';
 import singularOrPlural from '../../helpers/singularOrPlural';
+import Box from '../Box/Box';
 
 const Countdown = () => {
   const [years, days, hours, minutes, seconds] = useCountdown();
 
+  const info = [
+    { type: years, name: 'ano' },
+    { type: days, name: 'dia' },
+    { type: hours, name: 'hora' },
+    { type: minutes, name: 'minuto' },
+    { type: seconds, name: 'segundo' }
+  ];
   return (
-    <>
-      <S.Container>
-        <S.Box>
-          <S.Time>{years}</S.Time>
-          <S.Title>{singularOrPlural(years, 'ano')}</S.Title>
-        </S.Box>
-        <S.Box>
-          <S.Time>{days}</S.Time>
-          <S.Title>{singularOrPlural(days, 'dia')}</S.Title>
-        </S.Box>
-        <S.Box>
-          <S.Time>{hours}</S.Time>
-          <S.Title>{singularOrPlural(hours, 'hora')}</S.Title>
-        </S.Box>
-        <S.Box>
-          <S.Time>{minutes}</S.Time>
-          <S.Title>{singularOrPlural(minutes, 'minuto')}</S.Title>
-        </S.Box>
-        <S.Box>
-          <S.Time>{seconds}</S.Time>
-          <S.Title>{singularOrPlural(seconds, 'segundo')}</S.Title>
-        </S.Box>
-      </S.Container>
-    </>
+    <S.Container>
+      {info.map((item) => (
+        <Box
+          size='60px'
+          title={singularOrPlural(item.type, item.name)}
+          content={item.type}
+          color='blue'
+        />
+      ))}
+    </S.Container>
   );
 };
 

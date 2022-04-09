@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './style';
 import { NavLink } from 'react-router-dom';
-import { HOME, RESUME } from '../../routes';
+import { HOME, RESUME, SEMESTER } from '../../routes';
 import useAuth from '../../hooks/useAuth';
 
 const NavBar = () => {
@@ -37,11 +37,36 @@ const NavBar = () => {
             {openMenu && (
               <S.Dropdown>
                 <li ref={ref}>
-                  <NavLink to='/'>1º semestre</NavLink>
-                  <NavLink to='/'>2º semestre</NavLink>
-                  <NavLink to='/'>3º semestre</NavLink>
-                  <NavLink to='/'>4º semestre</NavLink>
-                  <NavLink to='/'>5º semestre</NavLink>
+                  <NavLink
+                    to={`${SEMESTER}?semesterId=1`}
+                    onClick={() => setOpenMenu(false)}
+                  >
+                    1º semestre
+                  </NavLink>
+                  <NavLink
+                    to={`${SEMESTER}?semesterId=2`}
+                    onClick={() => setOpenMenu(!openMenu)}
+                  >
+                    2º semestre
+                  </NavLink>
+                  <NavLink
+                    to={`${SEMESTER}?semesterId=3`}
+                    onClick={() => setOpenMenu(!openMenu)}
+                  >
+                    3º semestre
+                  </NavLink>
+                  <NavLink
+                    to={`${SEMESTER}?semesterId=4`}
+                    onClick={() => setOpenMenu(!openMenu)}
+                  >
+                    4º semestre
+                  </NavLink>
+                  <NavLink
+                    to={`${SEMESTER}?semesterId=5`}
+                    onClick={() => setOpenMenu(!openMenu)}
+                  >
+                    5º semestre
+                  </NavLink>
                 </li>
               </S.Dropdown>
             )}
