@@ -54,7 +54,7 @@ const Semester = () => {
         ''
       ) : (
         <>
-          {!data.every((obj) => obj.hasOwnProperty('grade')) ? (
+          {!data.some((obj) => obj.hasOwnProperty('grade')) ? (
             ''
           ) : (
             <S.ResumeContainer>

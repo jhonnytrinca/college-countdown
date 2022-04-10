@@ -4,7 +4,7 @@ import Resume from '../../components/Resume/resume';
 import useRegister from '../../hooks/useRegister';
 import * as S from './style';
 
-const Home = () => {
+const Home = ({ data }: any) => {
   const { getAll, isLoading } = useRegister();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Home = () => {
       ) : (
         <S.Container>
           <Countdown />
-          <Resume />
+          <Resume data={data} isLoading={isLoading} />
         </S.Container>
       )}
     </>

@@ -18,10 +18,11 @@ const Countdown = () => {
     <S.Container>
       {info.map((item) => (
         <Box
-          size='60px'
+          size='90px'
           title={singularOrPlural(item.type, item.name)}
           content={item.type}
           color='blue'
+          fontSize='4rem'
         />
       ))}
     </S.Container>

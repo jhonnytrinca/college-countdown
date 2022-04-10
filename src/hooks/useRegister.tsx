@@ -27,11 +27,12 @@ const useRegister = () => {
   const [data, setData] = useState<any[]>([]);
 
   const getAll = async () => {
+    setIsLoading(true);
     try {
       const ref = await getDocs(
         query(collection(db, 'subjects'), orderBy('semester'))
       );
-      let docs: any = [];
+      let docs: any[] = [];
       ref.forEach((doc) => {
         docs.push({ id: doc.id, ...doc.data() });
       });

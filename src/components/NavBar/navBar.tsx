@@ -10,9 +10,10 @@ const NavBar = () => {
 
   let ref = useRef<any>();
   useEffect(() => {
-    const handler = (e: any) => {
+    const handler = (e: MouseEvent | TouchEvent) => {
       if (openMenu && ref.current && !ref.current.contains(e.target)) {
         setOpenMenu(false);
+        console.log(e);
       }
     };
     document.addEventListener('mousedown', handler);

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import * as S from './style';
 
 type TableProps = {
   data: any;
-  openForm?: any;
+  openForm?: boolean;
   setOpenForm?: any;
   setItemToEdit?: any;
   userInfo?: any;

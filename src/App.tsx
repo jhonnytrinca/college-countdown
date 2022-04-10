@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import useAuth from './hooks/useAuth';
 import Semester from './pages/Semester/Semester';
+import useRegister from './hooks/useRegister';
 
 initializeApp(firebaseConfig);
 
@@ -26,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const { setUserInfo } = useAuth();
+  const { getAll, data } = useRegister();
 
   useEffect(() => {
     onAuthStateChanged(getAuth(), (user) => {
@@ -38,15 +40,24 @@ function App() {
     });
   }, [setUserInfo]);
 
+  useEffect(() => {
+    getAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <GlobalStyle />
       <NavBar />
 
       <Switch>
-        <Route path={RESUME} component={ResumeTable} />
+        <Route path={RESUME}>
+          <ResumeTable data={data} />
+        </Route>
         <Route path={SEMESTER} component={Semester} />
-        <Route path={HOME} component={Home} />
+        <Route path={HOME}>
+          <Home data={data} />
+        </Route>
       </Switch>
     </>
   );
