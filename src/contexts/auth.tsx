@@ -1,4 +1,4 @@
-import React, { useState, useCallback, createContext } from 'react';
+import { useState, useCallback, createContext } from 'react';
 import {
   GithubAuthProvider,
   signOut,

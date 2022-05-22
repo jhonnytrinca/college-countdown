@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect } from 'react';
 import CountUp from 'react-countup';
 import Box from '../../components/Box/Box';

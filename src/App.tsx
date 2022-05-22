@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import { HOME, RESUME, SEMESTER } from './routes';
-import Home from './pages/Home/home';
+import Home from './pages/Home';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './services/firebase';
 import ResumeTable from './pages/ResumeTable/ResumeTable';

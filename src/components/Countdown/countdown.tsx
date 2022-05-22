@@ -1,4 +1,3 @@
-import React from 'react';
 import useCountdown from '../../hooks/useCountdown';
 import * as S from './style';
 import singularOrPlural from '../../helpers/singularOrPlural';

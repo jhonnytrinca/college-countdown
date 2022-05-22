@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Countdown from '../../components/Countdown/countdown';
 import Resume from '../../components/Resume/resume';
 import useRegister from '../../hooks/useRegister';
@@ -9,7 +9,7 @@ const Home = ({ data }: any) => {
 
   useEffect(() => {
     getAll();
-  }, []);
+  }, [getAll]);
 
   return (
     <>
