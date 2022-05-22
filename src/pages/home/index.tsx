@@ -9,7 +9,8 @@ const Home = ({ data }: any) => {
 
   useEffect(() => {
     getAll();
-  }, [getAll]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
